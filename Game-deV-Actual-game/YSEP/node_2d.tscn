@@ -1,0 +1,105 @@
+[gd_scene load_steps=9 format=3 uid="uid://bvr03d161gsn0"]
+
+[ext_resource type="Texture2D" uid="uid://c48wrgvdppx6r" path="res://prototype.png" id="1_l8cqa"]
+[ext_resource type="Script" path="res://Input_actions.gd" id="1_oks54"]
+[ext_resource type="Texture2D" uid="uid://bd1ub7wyahpe0" path="res://sprite sheet crabe.png" id="3_juely"]
+
+[sub_resource type="TileSet" id="TileSet_rq04n"]
+
+[sub_resource type="Animation" id="Animation_8q7dr"]
+resource_name = "Idle_crabe"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 2,
+"values": [10, 9, 11, 9]
+}
+
+[sub_resource type="Animation" id="Animation_x28x2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q06ly"]
+_data = {
+"Idle_crabe": SubResource("Animation_8q7dr"),
+"RESET": SubResource("Animation_x28x2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a4bn8"]
+radius = 5.30234
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_rq04n")
+rendering_quadrant_size = 30
+format = 2
+
+[node name="Background" type="Sprite2D" parent="TileMap"]
+texture_filter = 1
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(3.645, 3.645)
+texture = ExtResource("1_l8cqa")
+
+[node name="Camera2D" type="Camera2D" parent="TileMap"]
+position = Vector2(-1.42109e-14, 0)
+scale = Vector2(3.965, 3.965)
+zoom = Vector2(1.215, 1.215)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMap"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(64, 226, 207, 219, 224, 73, 244, 46, 260, 46, 262, 261, 55, 261, 57, 237)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(-46, 260, -55, 221, -78, 212, -208, 212, -224, 188, -226, 89, -242, 59, -262, 51, -261, 262)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(-261, -55, -236, -55, -229, -64, -229, -150, -228, -206, -219, -226, -107, -227, -60, -226, -33, -245, -33, -263, -263, -263)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(38, -262, 57, -229, 190, -229, 226, -211, 230, -200, 230, -94, 230, -66, 244, -44, 262, -43, 262, -262)
+
+[node name="PlayerTopDown" type="CharacterBody2D" parent="."]
+scale = Vector2(3.965, 3.965)
+script = ExtResource("1_oks54")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerTopDown"]
+texture_filter = 1
+position = Vector2(7.15256e-07, -5.36442e-07)
+scale = Vector2(0.394073, 0.362547)
+texture = ExtResource("3_juely")
+hframes = 3
+vframes = 8
+frame = 10
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerTopDown/Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_q06ly")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTopDown"]
+shape = SubResource("CircleShape2D_a4bn8")
+
+[node name="Muzzle" type="Marker2D" parent="PlayerTopDown"]
+position = Vector2(-1.77636e-15, -4.76837e-07)
