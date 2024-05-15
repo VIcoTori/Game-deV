@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvr03d161gsn0"]
+
+[ext_resource type="Texture2D" uid="uid://c48wrgvdppx6r" path="res://prototype.png" id="1_l8cqa"]
+[ext_resource type="Script" path="res://Input_actions.gd" id="1_oks54"]
+[ext_resource type="Texture2D" uid="uid://4ao8hnxf466t" path="res://crabe.png" id="3_ogiq5"]
+
+[sub_resource type="TileSet" id="TileSet_rq04n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a4bn8"]
+radius = 5.30234
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_rq04n")
+rendering_quadrant_size = 30
+format = 2
+
+[node name="Background" type="Sprite2D" parent="TileMap"]
+texture_filter = 1
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(3.645, 3.645)
+texture = ExtResource("1_l8cqa")
+
+[node name="Camera2D" type="Camera2D" parent="TileMap"]
+position = Vector2(-1.42109e-14, 0)
+scale = Vector2(3.965, 3.965)
+zoom = Vector2(1.215, 1.215)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileMap"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(64, 226, 207, 219, 224, 73, 244, 46, 260, 46, 262, 261, 55, 261, 57, 237)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(-46, 260, -55, 221, -78, 212, -208, 212, -224, 188, -226, 89, -242, 59, -262, 51, -261, 262)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(-261, -55, -236, -55, -229, -64, -229, -150, -228, -206, -219, -226, -107, -227, -60, -226, -33, -245, -33, -263, -263, -263)
+
+[node name="CollisionPolygon2D4" type="CollisionPolygon2D" parent="TileMap/StaticBody2D"]
+polygon = PackedVector2Array(38, -262, 57, -229, 190, -229, 226, -211, 230, -200, 230, -94, 230, -66, 244, -44, 262, -43, 262, -262)
+
+[node name="PlayerTopDown" type="CharacterBody2D" parent="."]
+scale = Vector2(3.965, 3.965)
+script = ExtResource("1_oks54")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerTopDown"]
+texture_filter = 1
+position = Vector2(7.15256e-07, -5.36442e-07)
+scale = Vector2(0.394073, 0.362547)
+texture = ExtResource("3_ogiq5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTopDown"]
+shape = SubResource("CircleShape2D_a4bn8")
+
+[node name="Muzzle" type="Marker2D" parent="PlayerTopDown"]
+position = Vector2(-2.98023e-08, -5.29634)
+
+[node name="Direction" type="RayCast2D" parent="PlayerTopDown"]
