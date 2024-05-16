@@ -103,3 +103,7 @@ shape = SubResource("CircleShape2D_a4bn8")
 
 [node name="Muzzle" type="Marker2D" parent="PlayerTopDown"]
 position = Vector2(-1.77636e-15, -4.76837e-07)
+
+[node name="direction" type="RayCast2D" parent="PlayerTopDown"]
+position = Vector2(7.15256e-07, -5.36442e-07)
+scale = Vector2(0.394073, 0.362547)
