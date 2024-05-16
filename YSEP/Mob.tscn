@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy2n3aq815w4k"]
+
+[ext_resource type="Texture2D" uid="uid://w4tqshvsknif" path="res://icon.svg" id="1_1k6cv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rgq8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1k6cv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8ufky"]
+radius = 13.0
+
+[node name="Mob" type="Node2D"]
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_mask = 0
+gravity_scale = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="RigidBody2D"]
+scale = Vector2(0.165, 0.165)
+sprite_frames = SubResource("SpriteFrames_rgq8t")
+animation = &"swim"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="RigidBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_8ufky")
