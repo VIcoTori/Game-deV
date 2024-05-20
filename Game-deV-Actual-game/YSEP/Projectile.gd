@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var speed :int = 10 #speed of the bullet
-var Scene_Principal = preload("res://node_2d.tscn")
+var Scene_Principal = preload("res://bullet.tscn")
 var temp_sprite
 var timer = Timer
 
@@ -9,7 +9,7 @@ var timer = Timer
 
 func _ready(): # Called when the node enters the scene tree for the first time.
 	set_process(true) # Replace with function body.
-	var timer = get_node("Timer")
+	var _timer = get_node("_Timer")
 	
 	
 func _timer():

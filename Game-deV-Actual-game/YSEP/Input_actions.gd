@@ -14,7 +14,7 @@ func _ready(): # one time at start
 func get_input():
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * speed
-	velocity = velocity.normalized()
+	velocity = velocity.normalized() # permet de d'avoir la même vitesse en diagonal
 
 func _physics_process(_delta):
 	get_input()
@@ -22,7 +22,7 @@ func _physics_process(_delta):
 
 	if Input.is_action_pressed("shoot"):
 		shoot()
-	# permet de d'avoir la même vitesse en diagonal
+	
 	
 	
 	set_velocity(velocity*speed)
@@ -30,5 +30,5 @@ func _physics_process(_delta):
 
 func shoot():
 	var b = Bullet.instantiate()
-	add_child(b)
-	b.transform = $Muzzle.global_transform
+	add_child(b)  #le probleme c qu c un child donc il move avec le crabe. (faut trouver un moyen de les spawn just de meme)
+	b.transform = $shootingaparatus.global_transform

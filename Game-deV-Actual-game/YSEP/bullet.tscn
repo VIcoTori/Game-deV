@@ -3,21 +3,16 @@
 [ext_resource type="Script" path="res://Projectile.gd" id="1_klwmx"]
 [ext_resource type="Texture2D" uid="uid://i5pbp147rtbj" path="res://bulle_ball.png" id="2_uxyys"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4cyv6"]
-radius = 6.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_o60dc"]
+radius = 5.38516
 
-[node name="Node2D" type="Node2D"]
-scale = Vector2(-0.181411, 0.173098)
+[node name="CharacterBody2D" type="CharacterBody2D"]
+texture_filter = 1
+scale = Vector2(9.64307, 8.92208)
 script = ExtResource("1_klwmx")
 
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_4cyv6")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture_filter = 1
+[node name="BulleBall" type="Sprite2D" parent="."]
 texture = ExtResource("2_uxyys")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 5.186
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o60dc")
